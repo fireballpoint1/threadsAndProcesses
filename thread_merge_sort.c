@@ -125,6 +125,6 @@ int main(void) {
 	long long t2 = tv.tv_usec;
 
 	//print(a);
-	void printingFunc(length);
+	printingFunc(length);
 	return 0;
 }
