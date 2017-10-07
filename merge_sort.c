@@ -1,34 +1,7 @@
-#include<stdlib.h>
-#include<stdio.h>
- 
-// Merges two subarrays of arr[].
-// First subarray is arr[l..m]
-// Second subarray is arr[m+1..r]
-void swap(int *xp, int *yp)
-{
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
- 
-void selectionSort(int arr[], int l,int r)
-{
-    int i, j, min_idx,n;
-    n=r-l+1;
- 
-    // One by one move boundary of unsorted subarray
-    for (i = l; i < n-1; i++)
-    {
-        // Find the minimum element in unsorted array
-        min_idx = i;
-        for (j = i+1; j < n; j++)
-          if (arr[j] < arr[min_idx])
-            min_idx = j;
- 
-        // Swap the found minimum element with the first element
-        swap(&arr[min_idx], &arr[i]);
-    }
-}
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
 void merge(int arr[], int l, int m, int r)
 {
     int i, j, k;
@@ -90,21 +63,22 @@ void mergeSort(int arr[], int l, int r)
     {
         // Same as (l+r)/2, but avoids overflow for
         // large l and h
-        if (r-l+1<5)
+        /*
+        if (r-l+1<=5)
         {
             selectionSort(arr,l,r);
 
         }
-        else
-        {
+        */
+        
             int m = l+(r-l)/2;
-     
-            // Sort first and second halves
-            mergeSort(arr, l, m);
-            mergeSort(arr, m+1, r);
-     
-            merge(arr, l, m, r);
-        }
+        
+        mergeSort(arr, l, m);
+        //making second child
+        
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
+        
     }
 }
  
@@ -120,11 +94,16 @@ void printArray(int A[], int size)
 /* Driver program to test above functions */
 int main()
 {
-    int arr[] = {12, 11, 13, 5, 6, 7};
-    int arr_size = sizeof(arr)/sizeof(arr[0]);
- 
-    printf("Given array is \n");
-    printArray(arr, arr_size);
+    int n,i;
+    printf("What is the size of the array?\n");
+    scanf("%d",&n);
+    int arr[10000];
+    printf("\nEnter the number\n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    int arr_size = n;
  
     mergeSort(arr, 0, arr_size - 1);
  
