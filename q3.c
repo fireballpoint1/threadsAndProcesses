@@ -13,7 +13,7 @@ void mergeSort(int a[], int l, int h)
 {
     int i, len=(h-l+1);
  
-    // Using insertion sort for small sized array
+    // Using selection sort for small sized array
     if (len<=5)
     {
         selectionSort(a+l, len);
